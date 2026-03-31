@@ -11,3 +11,4 @@ pub struct Subscriber {
     pub url: String,
     pub name: String,
 }
+
