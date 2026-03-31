@@ -83,5 +83,10 @@ Vec vs. DashMap: DashMap is necessary. It provides O(1) lookup speed. Using a Ve
 
 Singleton vs. DashMap: We still need DashMap. The Singleton pattern only ensures there is a single instance of the database. It does not handle "traffic control." DashMap provides the thread-safety (concurrency) Rust requires to let multiple threads access that one instance without crashing.
 #### Reflection Publisher-2
+Service and Repository separation: Separating them follows the Single Responsibility Principle. Repository only handles data access (CRUD operations), while Service only handles business logic. If we keep everything in the Model, each Model class would be doing too many things at once, making it harder to maintain and test.
+
+Without separation: If we only use the Model, each model (Product, Subscriber, Notification) would contain its own data storage logic, business rules, and interactions with other models all in one place. Product would need to know how to fetch Subscribers and send Notifications directly. Subscriber would need to know about Products it subscribes to and how Notifications are structured. This creates tight coupling between models and makes the code much more complex, harder to read, and difficult to modify without breaking other parts.
+
+Postman: Postman is very helpful for testing the REST API endpoints without needing a frontend. I can send POST requests to subscribe/unsubscribe and verify the responses. Features I find useful include Collections (to organize and save related requests), Environment Variables (to switch between dev/prod URLs easily), and Automated Testing (to write test scripts that validate response status codes and body content). These would be helpful for group projects to ensure API reliability.
 
 #### Reflection Publisher-3
