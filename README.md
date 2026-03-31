@@ -77,7 +77,11 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+Struct vs. Trait: A struct is enough for now. All subscribers currently behave the same way (receiving a JSON via URL). You only need a Trait if you later add different types of subscribers—like Email or Discord—that require unique delivery logic.
 
+Vec vs. DashMap: DashMap is necessary. It provides O(1) lookup speed. Using a Vec would require looping through the entire list (O(n)) to check for uniqueness or to delete a specific URL, which is inefficient.
+
+Singleton vs. DashMap: We still need DashMap. The Singleton pattern only ensures there is a single instance of the database. It does not handle "traffic control." DashMap provides the thread-safety (concurrency) Rust requires to let multiple threads access that one instance without crashing.
 #### Reflection Publisher-2
 
 #### Reflection Publisher-3
